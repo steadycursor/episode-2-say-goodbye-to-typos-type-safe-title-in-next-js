@@ -1,40 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Steady Cursor](https://www.steadycursor.com/readme-episode-banner.png)
 
-## Getting Started
+# Typesafe Markdown with Next.js and TypeScript
 
-First, run the development server:
+This repository serves as the source code for our YouTube episode on implementing typesafe markdown files in a Next.js project using TypeScript. For a more detailed explanation and step-by-step guide, please refer to our [blog post on Steady Cursor](https://www.steadycursor.com/episodes/say-goodbye-to-typos-type-safe-title-in-next-js) or check out whole [episode on YouTube](https://youtu.be/L-qUT-yxflM).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+To manage web application page titles in Next.js, use a type-safe Page component with TypeScript. It allows flexible title settings, ensuring correct spelling and formatting. For example, use "Contact | Steady Cursor" for sub-pages and "Steady Cursor" for the homepage. This system prevents errors and maintains brand consistency. All thanks to string template literals.
+
+```typescript
+export type PageProps = {
+	title: string | null;
+	headTitle: `${string} | Steady Cursor` | "Steady Cursor";
+	children: ReactNode;
+};
+
+export const Page = ({ title, headTitle, children }: PageProps) => {
+	return (
+		<div>
+			<Head>
+				<title>{headTitle}</title>
+			</Head>
+			{title && <h1>{title}</h1>}
+			{children}
+		</div>
+	);
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tests for headTitle property
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- ✅ `Steady Cursor`
+- ✅ `Contact | Steady Cursor`
+- ✅ `About us | Steady Cursor`
+- 🚨 `Steady Crsor`
+- 🚨 `About Us|Steady Cursor`
+- 🚨 `Contact| Steady Cursor`
+- 🚨 `Lear |Steady Cursor`
+- 🚨 `Blog | Sady Cursor`
