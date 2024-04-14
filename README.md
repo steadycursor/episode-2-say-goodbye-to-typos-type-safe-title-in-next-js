@@ -1,6 +1,6 @@
-![Steady Cursor](https://www.steadycursor.com/readme-episode-banner.png)
+[![Steady Cursor](https://www.steadycursor.com/banner/readme.png)](https://www.steadycursor.com/episodes/say-goodbye-to-typos-type-safe-title-in-next-js)
 
-# Typesafe Markdown with Next.js and TypeScript
+# Say Goodbye to Typos: type-safe <title> in Next.js
 
 This repository serves as the source code for our YouTube episode on implementing typesafe markdown files in a Next.js project using TypeScript. For a more detailed explanation and step-by-step guide, please refer to our [blog post on Steady Cursor](https://www.steadycursor.com/episodes/say-goodbye-to-typos-type-safe-title-in-next-js) or check out whole [episode on YouTube](https://youtu.be/L-qUT-yxflM).
 
